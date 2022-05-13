@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <!-- Boostrap core CSS -->
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+      <!-- Menu Navegación -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{{ path('homepage') }}">Bar de Paco</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('nosotros') }}">Nosotros</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Bares
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  <a class="dropdown-item" href="#">Valencia</a>
+                  <a class="dropdown-item" href="#">Barcelona</a>
+                  <a class="dropdown-item" href="#">Madrid</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tapas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Reservas</a>
+              </li>
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="#">Nueva Tapa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="#">Gestion reservas</a>
+              </li>
+              {% endif %}
+              {% if app.user %}
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="#">Logout</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav><!-- Fin del menu de navegación -->
+        {% block body %}
+        {% endblock %}
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+          <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Cooking Software</p>
+          </div>
+          <!-- /.container -->
+        </footer>
+        <!-- Bootstrap core JavaScript -->
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
