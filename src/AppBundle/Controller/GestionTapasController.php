@@ -35,13 +35,19 @@ class GestionTapasController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //Rellenar el Entity Tapa
             $tapa = $form->getData();
-            $tapa->setFoto("");
+            $fotoFile=$tapa->getFoto();
+            $fileName = md5(uniqid()).'.'.$fotoFile->guessExtension();
+            //Mover el fichero a un directorio
+            $fotoFile->move(
+                $this->getParameter('tapaImg_directory'),
+                $fileName);
+            $tapa->setFoto($fileName);
             $tapa->setFechaCreacion(new \DateTime());
             //Almacenar nueva tapa
             $eM = $this->getDoctrine()->getManager();
             $eM->persist($tapa);
             $eM->flush();
-    
+
             return $this->redirectToRoute('tapa', array('id' => $tapa->getId()));
         }
         // replace this example code with whatever you need
