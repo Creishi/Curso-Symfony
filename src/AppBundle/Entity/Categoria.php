@@ -169,4 +169,8 @@ class Categoria
     {
         return $this->tapas;
     }
+    //Conversión a cadena
+    public function __toString(){
+        return $this->nombre;
+    }
 }

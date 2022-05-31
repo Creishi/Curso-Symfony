@@ -1,0 +1,24 @@
+{# Plantilla de nuestra aplicación #}
+{% extends "base.html.twig" %}
+    {% block title %}
+        Ingrediente
+    {% endblock %}
+        {# Inicio del body #}
+    {% block body %}
+            </header>
+            <!-- Page Content -->
+            <div class="container">
+            <h1 class="my-4">Ingrediente</h1>
+
+            <!-- Categoria Item Row -->
+            <div class="row">
+            
+                <div class="col-md-4">
+                <h3 class="my-3">{{ingrediente.nombre}}</h3>
+                </div>
+
+            </div>
+            <!-- /.row -->
+            </div>
+            <!-- /.container-->
+    {% endblock %}

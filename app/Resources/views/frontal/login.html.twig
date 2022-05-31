@@ -1,0 +1,37 @@
+{# Plantilla de nuestra aplicación #}
+{% extends "base.html.twig" %}
+
+    {% block title %}
+        Registro Usuario
+    {% endblock %}
+        {# Inicio del body #}
+    {% block body %}
+    <!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+    {% if error %}
+        <h3> {{ error.messageKey|trans(error.messageData, 'security') }}</h3>
+    {% endif %}
+    <h3>Inicio de sesión</h3>
+        <form action="{{ path('login') }}" method="post">
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_Username}}"/>
+                </div>
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="_password"/>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">login</button>
+        </form>
+        <br>
+      <a href="{{ path('nuevoUsuario') }}" class="btn btn-success" role="button">Nuevo Registro</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{# Plantilla de nuestra aplicación #}
+{% extends "base.html.twig" %}
+    {% block title %}
+        Categoria
+    {% endblock %}
+        {# Inicio del body #}
+    {% block body %}
+            </header>
+            <!-- Page Content -->
+            <div class="container">
+            <h1 class="my-4">Categoria</h1>
+
+            <!-- Categoria Item Row -->
+            <div class="row">
+
+                <div class="col-md-8">
+                <img class="img-fluid" src="{{ asset(tapaImg~categoria.foto) }}" alt="">
+                </div>
+
+                <div class="col-md-4">
+                <h3 class="my-3">{{categoria.nombre}}</h3>
+                <p>{{categoria.descripcion}}</p>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path('gestion_nueva_tapa',{'id': tapa.id})}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                {% endif %}
+                </div>
+
+            </div>
+            <!-- /.row -->
+            </div>
+            <!-- /.container-->
+    {% endblock %}
